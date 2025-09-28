@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://c844pf6f8ucy4"]
+
+[ext_resource type="Theme" uid="uid://13rv5hl0s4fe" path="res://main_theme.tres" id="1_yv3sl"]
+[ext_resource type="Script" path="res://write.gd" id="2_ac3tv"]
+[ext_resource type="PackedScene" uid="uid://c68x4gehrud3e" path="res://cus_codeedit.tscn" id="3_l0opi"]
+[ext_resource type="PackedScene" uid="uid://dk0t6b2l7j4a0" path="res://cus_txtedit.tscn" id="4_i4c4x"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yv3sl")
+script = ExtResource("2_ac3tv")
+
+[node name="code" parent="." instance=ExtResource("3_l0opi")]
+layout_mode = 1
+offset_top = 100.0
+offset_right = -700.0
+
+[node name="path" parent="." instance=ExtResource("4_i4c4x")]
+layout_mode = 1
+offset_right = -660.0
+offset_bottom = -680.0
+
+[node name="state" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 760.0
+offset_top = 80.0
+offset_right = 1046.0
+offset_bottom = 126.0
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -512
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yv3sl")
+color = Color(0.0588235, 0, 0.235294, 1)
+
+[connection signal="timeout" from="Timer" to="." method="_time_end"]

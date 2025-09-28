@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://653h5k2e7pcn"]
+
+[ext_resource type="PackedScene" uid="uid://c4s1ka4a61jw8" path="res://cube.tscn" id="1_2kk34"]
+[ext_resource type="PackedScene" uid="uid://7hhmup8lqtnw" path="res://wall/wall.tscn" id="2_vehvd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ey0aw"]
+size = Vector3(64, 1, 64)
+
+[node name="cube" instance=ExtResource("1_2kk34")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(64, 0, 0, 0, 1, 0, 0, 0, 64, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_ey0aw")
+
+[node name="Wall" parent="." index="2" instance=ExtResource("2_vehvd")]
+transform = Transform3D(13.0474, 0, 0, 0, 1, 0, 0, 0, 0.68125, -18.9212, 0.48081, 28.0881)

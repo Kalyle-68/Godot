@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cloco1mtk6bt7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_somr7"]
+size = Vector2(100, 100)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ddos4"]
+polygon = PackedVector2Array(50, -50, 50, 50, -50, 50, -50, -50)
+
+[node name="platform" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_somr7")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ddos4")

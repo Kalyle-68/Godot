@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://483wvxtcttb4"]
+
+[ext_resource type="PackedScene" uid="uid://c4s1ka4a61jw8" path="res://cube.tscn" id="1_cwo7t"]
+[ext_resource type="Script" path="res://cube.gd" id="2_7pj7e"]
+[ext_resource type="Script" path="res://menu.gd" id="3_ido35"]
+[ext_resource type="PackedScene" uid="uid://653h5k2e7pcn" path="res://level1.tscn" id="4_xuwsn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e4tpx"]
+sky_top_color = Color(0.0967498, 0, 0.603853, 1)
+sky_horizon_color = Color(0.633312, 0.000801088, 0.724189, 1)
+ground_bottom_color = Color(0.317662, 3.63387e-06, 0.221403, 1)
+ground_horizon_color = Color(0.59625, 0.6135, 0.6375, 1)
+
+[sub_resource type="Sky" id="Sky_i13ir"]
+sky_material = SubResource("ProceduralSkyMaterial_e4tpx")
+
+[sub_resource type="Environment" id="Environment_o4wn6"]
+background_mode = 2
+background_energy_multiplier = 0.05
+sky = SubResource("Sky_i13ir")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(0.190119, 0.0839884, 0.190117, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o4wn6")
+
+[node name="cube" parent="." instance=ExtResource("1_cwo7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0507, 1.88617, 31.1084)
+script = ExtResource("2_7pj7e")
+
+[node name="cam" type="Camera3D" parent="cube"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0)
+current = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="cube/cam"]
+light_color = Color(0.520964, 0.919116, 1, 1)
+light_energy = 0.25
+spot_range = 15.0
+spot_angle = 30.0
+
+[node name="console" type="RichTextLabel" parent="." groups=["console"]]
+offset_right = 816.0
+offset_bottom = 294.0
+
+[node name="pause_menu" type="ColorRect" parent="." groups=["pause_menu"]]
+visible = false
+offset_right = 2120.0
+offset_bottom = 1095.0
+color = Color(0, 0, 0, 0.490196)
+script = ExtResource("3_ido35")
+
+[node name="sens" type="HSlider" parent="pause_menu"]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 370.0
+offset_right = 735.0
+offset_bottom = 386.0
+min_value = 1.0
+max_value = 10.0
+step = 0.25
+value = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="pause_menu"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 291.0
+offset_right = 769.0
+offset_bottom = 331.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Sensitivity"
+scroll_active = false
+
+[node name="cube2" parent="." instance=ExtResource("4_xuwsn")]
